@@ -1,0 +1,4 @@
+/Users/haroldulrich/Desktop/Pythia/network_components/http_redis_client/CMakeFiles/pythiaObj.dir
+/Users/haroldulrich/Desktop/Pythia/network_components/http_redis_client/CMakeFiles/pythia.dir
+/Users/haroldulrich/Desktop/Pythia/network_components/http_redis_client/CMakeFiles/edit_cache.dir
+/Users/haroldulrich/Desktop/Pythia/network_components/http_redis_client/CMakeFiles/rebuild_cache.dir

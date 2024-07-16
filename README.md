@@ -53,7 +53,7 @@ docker run -it --network pythiaNetwork -v .:/workspace --name cont_llvm_redispp_
 
 
 From the ``network_components/http_redis_client/build`` dir.
-
+- Package Dependencies: `hiredis`, `redis-plus-plus`, and `csv2`
 - Run Cmake to generate makefile:
 ``` bash
 cmake ..
