@@ -84,7 +84,3 @@ WORKDIR /workspace
 
 # Set the default command
 CMD ["bash"]
-
-# Instructions to build and run the container without docker network
-# docker build -t llvm_redispp_crow .
-# docker run -it -v /home/h_server/rsync_async/Dockerfolder/host/share/:/workspace --name cont_llvm_redispp_crow llvm_redispp_crow

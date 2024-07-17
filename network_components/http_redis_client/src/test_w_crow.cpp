@@ -2,12 +2,12 @@
 
 int test_w_crow()
 {
-    sw::redis::Redis redis("tcp://myredis:6379");
+    sw::redis::Redis redis("tcp://pythiaOnRedis:6379");
     crow::SimpleApp app;
-    CROW_ROUTE(app, "/data")
-    ([&redis](const crow::request& req)
+    CROW_ROUTE(app, "/get/<string>").methods(crow::HTTPMethod::GET)
+    ([&redis](const std::string& key)
     {
-        auto val = redis.get("key");
+        auto val = redis.get(key);
         if (val)
         {
             return crow::response(200, *val);
@@ -17,10 +17,23 @@ int test_w_crow()
             return crow::response(404, "Data not found");
         }
     });
+
+    CROW_ROUTE(app, "/post").methods(crow::HTTPMethod::POST)
+    ([&redis](const crow::request& req)
+    {
+        auto x = crow::json::load(req.body);
+        if (!x)
+        {
+            return crow::response(400, "Invalid JSON");
+        }
+
+        std::string key = x["key"].s();
+        std::string value = x["value"].s();
+
+        redis.set(key, value);
+
+        return crow::response(200, "Data stored successfully");
+    });
     app.port(18080).multithreaded().run();
-    // app.bindaddr("127.0.0.1")
-    // .port(18080)
-    // .multithreaded()
-    // .run();
     return EXIT_SUCCESS;
 }

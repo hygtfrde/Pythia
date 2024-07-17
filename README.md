@@ -4,7 +4,7 @@ Test environment to support hygtfrde's delphi extractor project.
 link to delphi: ``https://github.com/hygtfrde/delphi``
 
 
-## How to install the environment;  
+## How to install the environment.
 
 ### Step 1. setup the Environment.
 Using docker.
@@ -79,3 +79,34 @@ From the project root dir.
 ```bash
 rm -r build
 mkdir build
+```
+
+
+### How to setup route with methods on crow.
+
+https://crowcpp.org/master/guides/routes/
+
+We are using nginx so the connection needs to be non SSL
+
+
+
+### Quick test 
+
+let's make some post and get request to our server via the load balancer !
+
+(Don't forget to use the appropriate port)
+
+If you have issues, try to add ``-X POST `` or ``-X GET`` in front of ``curl``, but it should ne be necessary. 
+
+post request :
+
+```sh
+curl http://localhost:80/post \
+    -H "Content-Type: application/json" \
+    -d '{"key":"mykey", "value":"myvalue"}'
+```
+
+get request:
+```sh
+curl http://localhost:80/get/mykey
+```
