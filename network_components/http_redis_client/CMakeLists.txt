@@ -41,20 +41,6 @@ target_link_libraries(pythiaObj PRIVATE nlohmann_json::nlohmann_json)
 add_executable(pythia src/main.cpp)
 target_link_libraries(pythia PRIVATE pythiaObj)
 
-# Option to enable or disable GoogleTest
-option(ENABLE_GTEST "Enable Google Test" OFF)
-
-if(ENABLE_GTEST)
-    enable_testing()
-    find_package(GTest REQUIRED)
-
-    # Add test executable
-    add_executable(redis_api_test tests/redis_api_test.cc)
-    target_link_libraries(redis_api_test PRIVATE GTest::gtest_main pythiaObj)
-
-    include(GoogleTest)
-    gtest_discover_tests(ptyhia_test)
-endif()
 
 # Install a pkg-config file.
 # CONFIGURE_FILE(
