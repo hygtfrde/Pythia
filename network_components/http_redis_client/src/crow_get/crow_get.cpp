@@ -1,6 +1,6 @@
 #include <main_header.hpp>
 
-void crow_key(crow::SimpleApp app, sw::redis::Redis& redis)
+void crow_key(crow::SimpleApp& app, sw::redis::Redis& redis)
 {
     CROW_ROUTE(app, "/key/<string>").methods(crow::HTTPMethod::GET)
     ([&redis](const std::string& key)
@@ -17,7 +17,7 @@ void crow_key(crow::SimpleApp app, sw::redis::Redis& redis)
     });
 }
 
-void crow_get(crow::SimpleApp app, sw::redis::Redis& redis)
+void crow_get(crow::SimpleApp& app, sw::redis::Redis& redis)
 {
     CROW_ROUTE(app, "/get/<string>").methods(crow::HTTPMethod::GET)
     ([&redis](const std::string& key)
@@ -35,7 +35,7 @@ void crow_get(crow::SimpleApp app, sw::redis::Redis& redis)
 }
 
 
-void crow_hmget(crow::SimpleApp app, sw::redis::Redis& redis)
+void crow_hmget(crow::SimpleApp& app, sw::redis::Redis& redis)
 {
     CROW_ROUTE(app, "/hmget").methods(crow::HTTPMethod::POST)
     ([&redis](const crow::request& req)
@@ -73,7 +73,7 @@ void crow_hmget(crow::SimpleApp app, sw::redis::Redis& redis)
 }
 
 
-void crow_lpop(crow::SimpleApp app, sw::redis::Redis& redis)
+void crow_lpop(crow::SimpleApp& app, sw::redis::Redis& redis)
 {
     CROW_ROUTE(app, "/lpop/<string>").methods(crow::HTTPMethod::GET)
     ([&redis](const std::string& key)
@@ -90,7 +90,7 @@ void crow_lpop(crow::SimpleApp app, sw::redis::Redis& redis)
     });
 }
 
-void crow_rpop(crow::SimpleApp app, sw::redis::Redis& redis)
+void crow_rpop(crow::SimpleApp& app, sw::redis::Redis& redis)
 {
     CROW_ROUTE(app, "/rpop/<string>").methods(crow::HTTPMethod::GET)
     ([&redis](const std::string& key)
@@ -107,7 +107,7 @@ void crow_rpop(crow::SimpleApp app, sw::redis::Redis& redis)
     });
 }
 
-void crow_llen(crow::SimpleApp app, sw::redis::Redis& redis)
+void crow_llen(crow::SimpleApp& app, sw::redis::Redis& redis)
 {
     CROW_ROUTE(app, "/llen/<string>").methods(crow::HTTPMethod::GET)
     ([&redis](const std::string& key)
@@ -126,7 +126,7 @@ void crow_llen(crow::SimpleApp app, sw::redis::Redis& redis)
 }
 
 
-void crow_ping(crow::SimpleApp app, sw::redis::Redis& redis)
+void crow_ping(crow::SimpleApp& app, sw::redis::Redis& redis)
 {
     CROW_ROUTE(app, "/ping").methods(crow::HTTPMethod::GET)
     ([&redis]()
@@ -143,7 +143,7 @@ void crow_ping(crow::SimpleApp app, sw::redis::Redis& redis)
     });
 }
 
-void crow_echo(crow::SimpleApp app, sw::redis::Redis& redis)
+void crow_echo(crow::SimpleApp& app, sw::redis::Redis& redis)
 {
     CROW_ROUTE(app, "/echo/<string>").methods(crow::HTTPMethod::GET)
     ([&redis](const std::string& msg)
@@ -160,7 +160,7 @@ void crow_echo(crow::SimpleApp app, sw::redis::Redis& redis)
     });
 }
 
-void crow_flushall(crow::SimpleApp app, sw::redis::Redis& redis)
+void crow_flushall(crow::SimpleApp& app, sw::redis::Redis& redis)
 {
     CROW_ROUTE(app, "/flushall").methods(crow::HTTPMethod::GET)
     ([&redis]()
@@ -171,7 +171,7 @@ void crow_flushall(crow::SimpleApp app, sw::redis::Redis& redis)
 }
 
 
-void crow_info(crow::SimpleApp app, sw::redis::Redis& redis)
+void crow_info(crow::SimpleApp& app, sw::redis::Redis& redis)
 {
     CROW_ROUTE(app, "/info").methods(crow::HTTPMethod::GET)
     ([&redis]()

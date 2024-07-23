@@ -1,7 +1,7 @@
 #include <main_header.hpp>
 #include <unordered_map>
 
-void crow_set(crow::SimpleApp app, sw::redis::Redis& redis)
+void crow_set(crow::SimpleApp& app, sw::redis::Redis& redis)
 {
     CROW_ROUTE(app, "/set").methods(crow::HTTPMethod::POST)
     ([&redis](const crow::request& req)
@@ -21,7 +21,7 @@ void crow_set(crow::SimpleApp app, sw::redis::Redis& redis)
     });
 }
 
-void crow_lpush(crow::SimpleApp app, sw::redis::Redis& redis)
+void crow_lpush(crow::SimpleApp& app, sw::redis::Redis& redis)
 {
     CROW_ROUTE(app, "/lpush").methods(crow::HTTPMethod::POST)
     ([&redis](const crow::request& req)
@@ -41,7 +41,7 @@ void crow_lpush(crow::SimpleApp app, sw::redis::Redis& redis)
     });
 }
 
-void crow_rpush(crow::SimpleApp app, sw::redis::Redis& redis)
+void crow_rpush(crow::SimpleApp& app, sw::redis::Redis& redis)
 {
     CROW_ROUTE(app, "/rpush").methods(crow::HTTPMethod::POST)
     ([&redis](const crow::request& req)
@@ -61,7 +61,7 @@ void crow_rpush(crow::SimpleApp app, sw::redis::Redis& redis)
     });
 }
 
-void crow_hmset(crow::SimpleApp app, sw::redis::Redis& redis)
+void crow_hmset(crow::SimpleApp& app, sw::redis::Redis& redis)
 {
     CROW_ROUTE(app, "/hmset").methods(crow::HTTPMethod::POST)
     ([&redis](const crow::request& req)
