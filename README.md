@@ -83,8 +83,31 @@ From the project root dir.
 rm -r build
 mkdir build
 ```
+### Architecture
+```mermaid
+flowchart TD
+    UserReq["User Request<br>Get Stats"]
+    lb["Load Balancer"]
+    subgraph HTTP_Servers
+        httpServer1["HTTP Server 1<br><br>Redis Client"]
+        httpServer2["HTTP Server 2<br><br>Redis Client"]
+        httpServer3["HTTP Server 3<br><br>Redis Client"]
+    end
+    redisServer["Redis Server"]
+    gtest["Redis Client<br>Google Test"]
+    delphi["Delphi<br>Extractor"]
 
-
+    UserReq --- lb
+    delphi --- lb
+    lb --- httpServer1
+    lb --- httpServer2
+    lb --- httpServer3
+    httpServer1 --- redisServer
+    httpServer2 --- redisServer
+    httpServer3 --- redisServer
+    redisServer --- gtest
+```
+ 
 ### https/server crow documentation.
 
 https://crowcpp.org/master/guides/routes/
@@ -105,6 +128,8 @@ If you have issues, try to add ``-X POST `` or ``-X GET`` in front of ``curl``, 
 | POST     | set      | set             | curl http://localhost:80/set \ <br> -H "Content-Type: application/json" \ <br> -d '{"key":"mykey", "value":"myvalue"}'|
 | POST     | lpush    | lpush           | curl http://localhost:80/lpush \ <br> -H "Content-Type: application/json" \ <br> -d '{"key":"mykey", "value":"myvalue"}'|
 | POST     | rpush    | rpush           | curl http://localhost:80/rpush \ <br> -H "Content-Type: application/json" \ <br> -d '{"key":"mykey", "value":"myvalue"}'|
+| POST     | hmset    | hmset           | curl http://localhost:80/rpush \ <br> -H "Content-Type: application/json" \ <br> -d '{"key":"myhash", "fields_values":{"field1":"value1", "field2":"value2"}}'|
+| POST     | hmget    | hmget           | curl http://localhost:80/hmget \ <br> -H "Content-Type: application/json" \ <br> -d '{"key":"myhash", "fields":["field1", "field2"]}'|
 | GET      | key      | key/<_string_>  | curl http://localhost:80/key/key_value|
 | GET      | get      | key/<_string_>  | curl http://localhost:80/get/key_value|
 | GET      | lpop     | lpop/<_string_> | curl http://localhost:80/lpop/key_value|
