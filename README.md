@@ -92,6 +92,7 @@ flowchart TD
         httpServer1["HTTP Server 1<br><br>Redis Client"]
         httpServer2["HTTP Server 2<br><br>Redis Client"]
         httpServer3["HTTP Server 3<br><br>Redis Client"]
+        httpServer4["...<br><br>..."]
     end
     redisServer["Redis Server"]
     gtest["Redis Client<br>Google Test"]
@@ -102,9 +103,11 @@ flowchart TD
     lb --- httpServer1
     lb --- httpServer2
     lb --- httpServer3
+    lb --- httpServer4
     httpServer1 --- redisServer
     httpServer2 --- redisServer
     httpServer3 --- redisServer
+    httpServer4 --- redisServer
     redisServer --- gtest
 ```
  
